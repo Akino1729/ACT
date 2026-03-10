@@ -1,0 +1,100 @@
+/* Q&A セクション用 CSS */
+
+.qa-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.qa-item {
+    background: var(--glass-bg);
+    border: 1px solid var(--border-color);
+}
+
+.qa-question-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: var(--space-lg);
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    color: var(--text-color);
+    font-family: inherit;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+.qa-question-btn:hover {
+    background: rgba(0,0,0,0.02);
+}
+
+.qa-question-btn:focus-visible {
+    outline: 2px solid var(--accent-color);
+    outline-offset: -2px;
+}
+
+.qa-q-mark {
+    font-family: var(--font-display);
+    color: var(--accent-color);
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-right: var(--space-md);
+    min-width: 24px;
+}
+
+.qa-q-text {
+    flex: 1;
+    line-height: 1.5;
+    padding-right: var(--space-md);
+}
+
+.qa-toggle-icon {
+    font-size: 0.8rem;
+    color: #aaa;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.qa-answer-wrapper {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.qa-answer {
+    overflow: hidden;
+    display: flex;
+    padding: 0 var(--space-lg);
+    color: #555;
+    line-height: 1.6;
+    min-height: 0;
+    transition: padding 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.qa-item.active .qa-answer-wrapper {
+    grid-template-rows: 1fr;
+}
+
+.qa-item.active .qa-answer {
+    padding-bottom: var(--space-lg);
+    /* padding-top を追加してアニメーションを自然に */
+    padding-top: var(--space-sm);
+}
+
+.qa-item.active .qa-toggle-icon {
+    transform: rotate(45deg);
+}
+
+.qa-a-mark {
+    font-family: var(--font-display);
+    color: #888;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-right: var(--space-md);
+    min-width: 24px;
+}
+
+.qa-answer .answer-text {
+    flex: 1;
+}

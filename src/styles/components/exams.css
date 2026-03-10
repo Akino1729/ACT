@@ -1,0 +1,111 @@
+/* 過去問セクション用 CSS */
+
+.exam-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xl);
+}
+
+.exam-card {
+    background: var(--glass-bg);
+    padding: var(--space-2xl);
+    border: 1px solid var(--border-color);
+    position: relative;
+}
+
+
+.exam-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: var(--space-md);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: var(--space-md);
+}
+
+.exam-header h3 {
+    font-size: 1.5rem;
+    letter-spacing: 0.05em;
+}
+
+.exam-date {
+    font-family: var(--font-display);
+    color: #666;
+    letter-spacing: 0.05em;
+}
+
+.exam-desc {
+    color: #555;
+    margin-bottom: var(--space-xl);
+}
+
+.exam-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    margin-bottom: var(--space-xl);
+}
+
+.btn-text {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    color: var(--text-color);
+    border-bottom: 1px solid transparent;
+    padding-bottom: 2px;
+    transition: var(--transition);
+}
+
+.btn-text:hover {
+    border-bottom-color: var(--text-color);
+}
+
+.btn-form {
+    color: var(--accent-color);
+}
+
+.btn-form:hover {
+    border-bottom-color: var(--accent-color);
+}
+
+.exam-results {
+    background: rgba(0,0,0,0.02);
+    padding: var(--space-lg);
+    border-radius: 4px;
+}
+
+.exam-results h4 {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: var(--space-md);
+    letter-spacing: 0.1em;
+}
+
+.table-scroll-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+}
+
+.result-table {
+    width: 100%;
+    min-width: 600px;
+    border-collapse: collapse;
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+}
+
+.result-table th,
+.result-table td {
+    padding: var(--space-sm) var(--space-md);
+    text-align: center;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.result-table th {
+    color: #777;
+    font-weight: 600;
+}

@@ -1,6 +1,14 @@
 import { ViewRenderer } from './views/ViewRenderer.js';
-import { upcoming } from './data/index.js';
+import { upcoming, news, exams, qa } from './data/index.js';
 import { ParticleIntro } from './intro.js';
+import { validateNews, validateExams, validateUpcoming, validateQA } from './utils/validateData.js';
+import { state, getLatestExamId, toggleCommentary } from './app/state.js';
+
+// 起動時にデータバリデーションを実行し，問題があればコンソールに警告を出す
+validateNews(news);
+validateExams(exams);
+validateUpcoming(upcoming);
+validateQA(qa);
 
 class App {
     constructor() {
@@ -9,18 +17,21 @@ class App {
         this.menuToggle = document.getElementById('menuToggle');
         this.navLinks = document.getElementById('navLinks');
         this.countdownInterval = null;
+
+        // 初回選択を最新の試験に初期化
+        state.selectedExamId = getLatestExamId(exams);
         
         this.init();
     }
 
     init() {
-        // Start intro animation
+        // イントロアニメーションを開始
         new ParticleIntro();
         
-        // Initial Render (Home)
+        // 初回レンダリング (ホーム)
         this.updateView('home');
 
-        // Event Listeners
+        // イベントリスナーをセットアップ
         this.setupNavigation();
         this.setupMobileMenu();
         this.setupThemeToggle();
@@ -28,43 +39,95 @@ class App {
 
     setupNavigation() {
         document.body.addEventListener('click', (e) => {
-            // Navigation
+            // ナビゲーションリンク
             const link = e.target.closest('[data-link]');
             if (link) {
                 e.preventDefault();
                 const viewName = link.getAttribute('data-link');
                 this.updateView(viewName);
                 
-                // Close mobile menu if open
+                // モバイルメニューを閉じる
                 this.navLinks.classList.remove('active');
                 if (this.menuToggle) {
                     this.menuToggle.classList.remove('open');
+                    this.menuToggle.setAttribute('aria-expanded', 'false');
                 }
             }
 
-            // Accordion (Q&A)
+            // Q&A アコーディオン
             const qaBtn = e.target.closest('.qa-question-btn');
             if (qaBtn) {
                 const item = qaBtn.parentElement;
-                item.classList.toggle('active');
+                const isActive = item.classList.toggle('active');
+                // aria-expanded を開閉状態に合わせて更新
+                qaBtn.setAttribute('aria-expanded', String(isActive));
+            }
+
+            // コメンタリートグル
+            const commentaryBtn = e.target.closest('[data-action="toggle-commentary"]');
+            if (commentaryBtn) {
+                const examId = commentaryBtn.getAttribute('data-exam-id');
+                toggleCommentary(examId);
+                // 過去問セクションのみ差分更新
+                this.rerenderPastExams();
+            }
+        });
+
+        // 試験セレクターの変更イベント
+        document.body.addEventListener('change', (e) => {
+            const examSelect = e.target.closest('[data-action="change-exam"]');
+            if (examSelect) {
+                state.selectedExamId = examSelect.value;
+                state.commentaryOpen.clear(); // 切替時はコメンタリーを全閉じる
+                this.rerenderPastExams();
             }
         });
     }
 
-    setupMobileMenu() {
-        if (this.menuToggle) {
-            this.menuToggle.addEventListener('click', () => {
-                this.navLinks.classList.toggle('active');
-                this.menuToggle.classList.toggle('open');
-            });
+    /**
+     * 過去問セクションのみを再描画する．年度切替・コメンタリートグル時に使用．
+     */
+    rerenderPastExams() {
+        const { PastExamsSection } = this._components || {};
+        const section = document.getElementById('past-exams');
+        if (!section) return;
+
+        // セクションを完全に再生成するため innerHTML を更新
+        // （本プロジェクトの規模では十分なアプローチ）
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = this.renderer.renderHome(state);
+        const newSection = tempDiv.querySelector('#past-exams');
+        if (newSection) {
+            section.replaceWith(newSection);
         }
+    }
+
+    setupMobileMenu() {
+        if (!this.menuToggle) return;
+
+        const toggleMenu = () => {
+            const isOpen = this.navLinks.classList.toggle('active');
+            this.menuToggle.classList.toggle('open');
+            // aria-expanded を開閉状態に合わせて更新
+            this.menuToggle.setAttribute('aria-expanded', String(isOpen));
+        };
+
+        this.menuToggle.addEventListener('click', toggleMenu);
+
+        // キーボードアクセシビリティ: Enter / Space でも開閉できるようにする
+        this.menuToggle.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                toggleMenu();
+            }
+        });
     }
 
     setupThemeToggle() {
         const toggle = document.getElementById('themeToggle');
         if (!toggle) return;
 
-        // Load saved theme
+        // 保存されたテーマを読み込む
         const savedTheme = localStorage.getItem('theme') || 'light';
         document.documentElement.setAttribute('data-theme', savedTheme);
 
@@ -77,8 +140,8 @@ class App {
         });
     }
 
-    updateView(viewName) {
-        // Clear existing countdown interval
+    async updateView(viewName) {
+        // 既存のカウントダウンインターバルをクリア
         if (this.countdownInterval) {
             clearInterval(this.countdownInterval);
             this.countdownInterval = null;
@@ -87,22 +150,24 @@ class App {
         let contentHTML = '';
         
         if (viewName === 'home') {
-            contentHTML = this.renderer.renderHome();
+            // 現在のステートを渡してビューを生成
+            contentHTML = this.renderer.renderHome(state);
         } else {
-            contentHTML = this.renderer.renderPage(viewName);
+            // 非同期でコンテンツを取得
+            contentHTML = await this.renderer.renderPage(viewName);
         }
 
         this.appElement.innerHTML = contentHTML;
         
-        // Update navigation active state
+        // ナビゲーションのアクティブ状態を更新
         this.updateNavActiveState(viewName);
         
-        // Start countdown if on home page
+        // ホームページのみカウントダウンを開始
         if (viewName === 'home') {
             this.startCountdown();
         }
         
-        // Re-render math
+        // 数式をレンダリング
         if (window.renderMathInElement) {
             renderMathInElement(this.appElement, {
                 delimiters: [
@@ -112,7 +177,7 @@ class App {
             });
         }
 
-        // Scroll to top
+        // ページトップに戻る
         window.scrollTo(0, 0);
     }
 
@@ -173,15 +238,14 @@ class App {
             `;
         };
 
-        // Initial update
+        // 初回更新
         updateCountdown();
-        
-        // Update every second
+        // 1秒ごとに更新
         this.countdownInterval = setInterval(updateCountdown, 1000);
     }
 }
 
-// Start App
+// アプリケーションを起動
 document.addEventListener('DOMContentLoaded', () => {
     new App();
 });

@@ -1,0 +1,22 @@
+{
+  "name": "arcaea-common-test",
+  "version": "1.0.0",
+  "description": "Arcaea Common Test Website Revision",
+  "main": "src/js/main.js",
+  "type": "module",
+  "scripts": {
+    "start": "npx serve .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "format": "prettier --write \"src/js/**/*.js\"",
+    "lint": "eslint \"src/js/**/*.js\""
+  },
+  "author": "tzug",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^9.0.0",
+    "jsdom": "^28.1.0",
+    "prettier": "^3.0.0",
+    "vitest": "^2.0.0"
+  }
+}

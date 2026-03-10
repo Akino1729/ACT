@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Noto+Serif+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="../src/styles/style.css">
+    <link rel="stylesheet" href="../src/styles/main.css">
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -32,12 +32,17 @@
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <div class="logo">Arcaea Common Test</div>
-            <div class="menu-toggle" id="menuToggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+            <a href="#" class="logo" aria-label="ページトップへ戻る">Arcaea Common Test</a>
+        <div class="menu-toggle" id="menuToggle"
+             role="button"
+             aria-label="メニューを開く"
+             aria-expanded="false"
+             aria-controls="navLinks"
+             tabindex="0">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#" data-link="home">ホーム</a></li>
                 <li><a href="#" data-link="guidelines">注意事項等</a></li>
@@ -55,7 +60,7 @@
     <footer>
         <div class="footer-container">
             <div class="footer-icons">
-                <a href="https://twitter.com/your_twitter" target="_blank" class="icon-link">
+                <a href="https://twitter.com/tzug_c" target="_blank" class="icon-link" aria-label="公式アカウント (X)">
                     <i class="fa-brands fa-x-twitter"></i>
                 </a>
             </div>

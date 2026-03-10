@@ -1,0 +1,53 @@
+/* 共通ユーティリティクラス */
+
+/* 表示制御 */
+.u-hidden {
+    display: none !important;
+}
+
+.u-invisible {
+    visibility: hidden !important;
+}
+
+/* Flexbox ユーティリティ */
+.u-flex {
+    display: flex !important;
+}
+
+.u-flex-col {
+    flex-direction: column !important;
+}
+
+.u-center {
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+.u-space-between {
+    justify-content: space-between !important;
+}
+
+/* マージン・パディング (M=Margin, P=Padding, T=Top, B=Bottom, L=Left, R=Right) */
+.u-mt-0 { margin-top: 0 !important; }
+.u-mb-0 { margin-bottom: 0 !important; }
+.u-mb-sm { margin-bottom: var(--space-sm) !important; }
+.u-mb-md { margin-bottom: var(--space-md) !important; }
+.u-mb-lg { margin-bottom: var(--space-lg) !important; }
+.u-mb-xl { margin-bottom: var(--space-xl) !important; }
+
+/* テキスト・タイポグラフィ */
+.u-text-center {
+    text-align: center !important;
+}
+
+.u-text-right {
+    text-align: right !important;
+}
+
+.u-text-display {
+    font-family: var(--font-display) !important;
+}
+
+/* 状態クラス（JavaScript からの切り替え用） */
+/* ※ is-scrollable や is-open などは各コンポーネント CSS 内に定義されていることが多いが、
+      完全に汎用なものはここに配置する */

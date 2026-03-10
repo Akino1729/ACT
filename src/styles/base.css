@@ -1,0 +1,89 @@
+/* リセットと基本スタイル・アニメーション */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    overflow-x: hidden;
+    transition: background-color 0.5s ease;
+}
+
+/* Background Decoration */
+body::before {
+    content: '';
+    position: fixed;
+    top: -50vh;
+    left: -50vw;
+    width: 200vw;
+    height: 200vh;
+    background: linear-gradient(135deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.03) 40%, rgba(0,0,0,0.03) 60%, rgba(0,0,0,0) 60%);
+    z-index: -1;
+    pointer-events: none;
+    transition: background 0.5s ease;
+}
+
+[data-theme="dark"] body::before {
+    background: linear-gradient(135deg, rgba(255,255,255,0) 40%, rgba(255,255,255,0.02) 40%, rgba(255,255,255,0.02) 60%, rgba(255,255,255,0) 60%);
+}
+
+h1, h2, h3, h4, .exam-number {
+    font-family: var(--font-display);
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+/* Base Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* モーションを抑制する設定を尊重する */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.8s ease forwards;
+}
+
+/* フォーカスの可視化（キーボード操作時のみ表示） */
+:focus-visible {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 3px;
+}
+
+/* 試験の「第N回」ラベル用クラス */
+.exam-number-text {
+    font-family: var(--font-display);
+    color: #999;
+    font-size: 0.95rem;
+    letter-spacing: 0.1em;
+    margin-bottom: var(--space-xs);
+    text-align: left;
+    display: block;
+}
+
+[data-theme="dark"] .exam-number-text {
+    color: #666;
+}

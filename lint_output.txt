@@ -1,0 +1,4 @@
+
+> arcaea-common-test@1.0.0 lint
+> eslint "src/js/**/*.js"
+

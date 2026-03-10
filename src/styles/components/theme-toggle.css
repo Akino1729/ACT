@@ -1,0 +1,33 @@
+/* テーマ切替（Theme Toggle）用 CSS */
+
+.theme-toggle {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: var(--glass-bg);
+    border: 1px solid var(--border-color);
+    backdrop-filter: blur(5px);
+    cursor: pointer;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-color);
+    transition: var(--transition);
+}
+
+.theme-toggle:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+/* デフォルト(ライト)は 月(darkへの切り替え)を表示 */
+.icon-moon { display: block; }
+.icon-sun { display: none; }
+
+/* ダーク時は 太陽(lightへの切り替え)を表示 */
+[data-theme="dark"] .icon-moon { display: none; }
+[data-theme="dark"] .icon-sun { display: block; }

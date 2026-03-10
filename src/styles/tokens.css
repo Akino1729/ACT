@@ -1,0 +1,24 @@
+/* カスタムプロパティ定義 */
+:root {
+    /* Colors - Light Theme */
+    --bg-color: #f7f5ef;
+    --text-color: #333;
+    --accent-color: #6482a4;
+    --glass-bg: rgba(255, 255, 255, 0.6);
+    --border-color: rgba(0, 0, 0, 0.05);
+
+    /* Typography */
+    --font-main: "Noto Serif JP", serif;
+    --font-display: "Cormorant Garamond", "Noto Serif JP", serif;
+
+    /* Spacing */
+    --space-xs: 4px;
+    --space-sm: 8px;
+    --space-md: 15px;
+    --space-lg: 20px;
+    --space-xl: 30px;
+    --space-2xl: 40px;
+
+    /* Transitions */
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}

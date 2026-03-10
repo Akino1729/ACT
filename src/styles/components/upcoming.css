@@ -1,0 +1,132 @@
+/* 実施中の試験 (Upcoming Exam) セクション用 CSS */
+
+.upcoming-card {
+    background: var(--glass-bg);
+    padding: var(--space-2xl);
+    border: 1px solid var(--border-color);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.upcoming-card .exam-number-text {
+    text-align: center;
+}
+
+.upcoming-label {
+    display: inline-block;
+    background: var(--text-color);
+    color: var(--bg-color);
+    padding: 4px 12px;
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    margin-bottom: var(--space-md);
+}
+
+.upcoming-title {
+    font-size: 1.8rem;
+    margin-bottom: var(--space-md);
+    letter-spacing: 0.1em;
+}
+
+.upcoming-date-box {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: var(--space-xl);
+}
+
+.date-main {
+    font-size: 1.2rem;
+    font-family: var(--font-display);
+    letter-spacing: 0.05em;
+}
+
+.date-sub {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.countdown-wrapper {
+    margin: var(--space-xl) 0;
+    padding: var(--space-lg);
+    background: rgba(0,0,0,0.02);
+    border-radius: 4px;
+}
+
+.countdown-label {
+    display: block;
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: var(--space-md);
+    letter-spacing: 0.1em;
+}
+
+.countdown-timer {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-xl);
+    font-family: var(--font-display);
+}
+
+.countdown-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 60px;
+}
+
+.countdown-value {
+    font-size: 2.5rem;
+    font-weight: 300;
+    line-height: 1;
+    margin-bottom: 5px;
+    color: var(--accent-color);
+}
+
+.countdown-unit {
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    color: #888;
+}
+
+.upcoming-links {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-md);
+    margin-top: var(--space-xl);
+    flex-wrap: wrap;
+}
+
+.upcoming-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-sm) var(--space-xl);
+    border: 1px solid var(--text-color);
+    color: var(--text-color);
+    font-family: var(--font-display);
+    letter-spacing: 0.05em;
+    transition: var(--transition);
+}
+
+.upcoming-link:not(.disabled):hover {
+    background: var(--text-color);
+    color: var(--bg-color);
+}
+
+.upcoming-link.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    border-color: #ccc;
+    color: #888;
+}
+
+.upcoming-link-note {
+    display: block;
+    font-size: 0.8rem;
+    color: #888;
+    margin-top: var(--space-xs);
+    width: 100%;
+}

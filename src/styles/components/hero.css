@@ -1,0 +1,24 @@
+/* ヒーローセクション用 CSS */
+
+.hero {
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-top: 150px;
+}
+
+.hero h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    letter-spacing: 0.15em;
+    margin-bottom: var(--space-lg);
+    font-weight: 300;
+}
+
+.hero p {
+    font-size: 1.1rem;
+    letter-spacing: 0.2em;
+    color: #666;
+}

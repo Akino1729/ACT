@@ -1,2 +1,6 @@
 #testsディレクトリを無視する
-tests/
+tex/
+
+node_modules/
+
+test_output.txt
