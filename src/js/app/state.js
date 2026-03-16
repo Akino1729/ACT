@@ -1,3 +1,16 @@
+import { exams, news, upcoming, qa } from '../data/index.js';
+import { validateNews, validateExams, validateUpcoming, validateQA } from '../utils/validateData.js';
+
+/**
+ * Validated Application Data (Source of Truth)
+ */
+export const appData = {
+    news: validateNews(news),
+    exams: validateExams(exams),
+    upcoming: validateUpcoming(upcoming),
+    qa: validateQA(qa)
+};
+
 /**
  * アプリケーションのビューステート
  *
@@ -13,12 +26,11 @@ export const state = {
 
 /**
  * 利用可能な試験から最新（先頭）の試験IDを取得する．
- * @param {Array<object>} exams
  * @returns {string|null}
  */
-export function getLatestExamId(exams) {
-    if (!exams || exams.length === 0) return null;
-    return exams[0].id;
+export function getLatestExamId() {
+    if (!appData.exams || appData.exams.length === 0) return null;
+    return appData.exams[0].id;
 }
 
 /**

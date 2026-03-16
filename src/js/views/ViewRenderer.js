@@ -1,4 +1,3 @@
-import { news, upcoming, qa, exams } from '../data/index.js';
 import { loadContent } from '../utils/contentLoader.js';
 import { HeroSection } from '../components/home/HeroSection.js';
 import { NewsSection } from '../components/home/NewsSection.js';
@@ -11,10 +10,12 @@ export class ViewRenderer {
     /**
      * ホームページ全体の HTML を返す．
      * @param {object} [appState={}] - ビューステート（selectedYear, commentaryOpen）
+     * @param {object} [appData={}] - Validated app data
      * @returns {string}
      */
-    renderHome(appState = {}) {
+    renderHome(appState = {}, appData = {}) {
         const { selectedExamId = null, commentaryOpen = new Set() } = appState;
+        const { news = [], upcoming = null, exams = [], qa = [] } = appData;
 
         return [
             HeroSection(),

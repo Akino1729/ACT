@@ -32,7 +32,7 @@ export function UpcomingSection(upcoming) {
 
                     <div class="upcoming-links">
                         ${pdfAvailable
-                            ? `<a href="${upcoming.pdfLink}" target="_blank" class="upcoming-link">
+                            ? `<a href="${upcoming.pdfLink}" target="_blank" rel="noopener noreferrer" class="upcoming-link">
                                 <i class="fa-regular fa-file-pdf"></i> 問題用紙
                                </a>`
                             : `<span class="upcoming-link disabled">
@@ -41,7 +41,7 @@ export function UpcomingSection(upcoming) {
                                <span class="upcoming-link-note">※試験開始時に配布されます</span>`
                         }
                         ${formAvailable
-                            ? `<a href="${upcoming.formLink}" target="_blank" class="upcoming-link">
+                            ? `<a href="${upcoming.formLink}" target="_blank" rel="noopener noreferrer" class="upcoming-link">
                                 <i class="fa-brands fa-google"></i> 解答はこちら
                                </a>`
                             : `<span class="upcoming-link disabled">

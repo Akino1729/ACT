@@ -66,11 +66,12 @@
 .countdown-timer {
     display: flex;
     justify-content: center;
+    align-items: flex-start;
     gap: var(--space-xl);
     font-family: var(--font-display);
 }
 
-.countdown-item {
+.countdown-unit {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -85,10 +86,36 @@
     color: var(--accent-color);
 }
 
-.countdown-unit {
+.countdown-text {
     font-size: 0.8rem;
     letter-spacing: 0.1em;
     color: #888;
+}
+
+.countdown-separator {
+    font-size: 1.5rem;
+    color: var(--border-color);
+    margin-top: 0.2rem;
+}
+
+@media (max-width: 768px) {
+    .countdown-timer {
+        gap: var(--space-sm);
+    }
+    .countdown-unit {
+        min-width: 45px;
+    }
+    .countdown-value {
+        font-size: 1.8rem;
+        margin-bottom: 3px;
+    }
+    .countdown-text {
+        font-size: 0.65rem;
+    }
+    .countdown-separator {
+        font-size: 1.2rem;
+        margin-top: 0.2rem;
+    }
 }
 
 .upcoming-links {

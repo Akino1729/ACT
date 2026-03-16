@@ -20,14 +20,14 @@ export function ExamCard(exam, commentaryOpen = false) {
             <p class="exam-desc">${exam.description}</p>
 
             <div class="exam-links">
-                <a href="${exam.links.question}" target="_blank" class="btn-text">
+                <a href="${exam.links.question}" target="_blank" rel="noopener noreferrer" class="btn-text">
                     <i class="fa-regular fa-file-pdf"></i> 問題
                 </a>
-                <a href="${exam.links.answer}" target="_blank" class="btn-text">
-                    <i class="fa-regular fa-file-pdf"></i> 解答
+                <a href="${exam.links.answer}" target="_blank" rel="noopener noreferrer" class="btn-text">
+                    <i class="fa-regular fa-file-pdf"></i> 解説
                 </a>
                 ${formAvailable
-                    ? `<a href="${exam.links.form}" target="_blank" class="btn-text btn-form">
+                    ? `<a href="${exam.links.form}" target="_blank" rel="noopener noreferrer" class="btn-text btn-form">
                         <i class="fa-brands fa-google"></i> 解答フォーム
                        </a>`
                     : ''
@@ -51,7 +51,7 @@ export function ExamCard(exam, commentaryOpen = false) {
                         </thead>
                         <tbody>
                             <tr>
-                                <td>${exam.stats.takers}名</td>
+                                <td>${exam.stats.takers}</td>
                                 <td>${exam.stats.average}</td>
                                 <td>${exam.stats.stdDev}</td>
                                 <td>${exam.stats.min}</td>

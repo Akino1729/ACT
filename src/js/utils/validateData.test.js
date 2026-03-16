@@ -3,28 +3,34 @@ import { validateNews, validateExams } from './validateData.js';
 
 describe('validateData', () => {
     describe('validateNews', () => {
-        it('should correctly format items with missing fields', () => {
+        it('should return array with missing fields filled by defaults', () => {
             const malformedNews = [
                 { text: 'Missing date' },
                 { date: '2025/11/11' } // text missing
             ];
-            validateNews(malformedNews);
+            const validated = validateNews(malformedNews);
             
-            expect(malformedNews[0].date).toBe('不明な日時');
-            expect(malformedNews[1].text).toBe('タイトルなし');
+            expect(validated[0].date).toBe('----.--.--');
+            expect(validated[0].text).toBe('Missing date');
+            expect(validated[1].date).toBe('2025/11/11');
+            expect(validated[1].text).toBe('');
         });
     });
 
     describe('validateExams', () => {
-        it('should add currentYear to exams missing it', () => {
+        it('should return array with nested defaults for links and stats', () => {
             const malformedExams = [
-                { id: '1', title: 'test exam', links: {}, stats: {} }
+                { id: '1', title: 'test exam' } // links, stats missing
             ];
-            const currentYear = new Date().getFullYear();
             
-            validateExams(malformedExams);
+            const validated = validateExams(malformedExams);
             
-            expect(malformedExams[0].year).toBe(currentYear);
+            expect(validated[0].id).toBe('1');
+            expect(validated[0].title).toBe('test exam');
+            expect(validated[0].links).toBeDefined();
+            expect(validated[0].links.question).toBe('#');
+            expect(validated[0].stats).toBeDefined();
+            expect(validated[0].stats.takers).toBe(0);
         });
     });
 });

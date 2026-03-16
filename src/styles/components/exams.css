@@ -109,3 +109,19 @@
     color: #777;
     font-weight: 600;
 }
+
+@media (max-width: 768px) {
+    .exam-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-sm);
+    }
+    .exam-date {
+        align-self: flex-start;
+    }
+    .result-table th,
+    .result-table td {
+        padding: var(--space-sm);
+        font-size: 0.9rem;
+    }
+}

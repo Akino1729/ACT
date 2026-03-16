@@ -4,3 +4,9 @@ tex/
 node_modules/
 
 test_output.txt
+
+CLAUDE.md
+
+vitest.config.js
+
+.prettierrc
