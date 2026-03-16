@@ -33,27 +33,5 @@ export const exams = [
           max: 72,
       },
   },
-  {
-    id: "main1",
-    number: "第1回",
-    title: "Arcaea共通テスト",
-    date: "2026年1月10日実施",
-    description: "",
-    commentary: "",  // 出題者コメント（空の場合はトグルを表示しない）
-    links: {
-        question: "assets/2026/2026_question_01.pdf",
-        answer: "assets/2026/2026_answer_01.pdf",
-        form: "https://docs.google.com/forms/d/e/1FAIpQLSdbwH0C1dw6ubCxotYqr0XpXJqIVglmb9HaDA46SOMcvZB5KQ/viewform?usp=header",
-    },
-    stats: {
-        statsDate: "2026.3.2時点",
-        takers: 14,
-        average: 52.3,
-        stdDev: 12.1,
-        min: 38,
-        median: 49,
-        max: 72,
-    },
-},
 ];
 

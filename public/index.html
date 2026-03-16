@@ -22,6 +22,7 @@
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
 </head>
 <body>
+    <div class="bg-parallax-layer" id="bgParallax"></div>
 
     <!-- Intro Animation Overlay -->
     <div class="intro-overlay" id="introOverlay">
@@ -43,7 +44,7 @@
         </button>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#" data-link="home">ホーム</a></li>
-                <li><a href="#" data-link="guidelines">注意事項等</a></li>
+                <li><a href="#" data-link="guidelines">出題方針</a></li>
                 <li><a href="#" data-link="credits">クレジット</a></li>
             </ul>
         </div>
@@ -54,24 +55,29 @@
         <!-- Content will be injected here by JS -->
     </main>
 
+    <!-- Back to Top Button aligned with body bottom -->
+    <div class="back-to-top-wrapper">
+        <a href="#" id="backToTop" class="back-to-top-btn"><i class="fa-solid fa-chevron-up"></i> トップに戻る</a>
+    </div>
+
     <!-- Footer -->
     <footer>
         <div class="footer-container">
             <div class="footer-icons">
-                <a href="https://twitter.com/tzug_c" target="_blank" rel="noopener noreferrer" class="icon-link" aria-label="公式アカウント (X)">
-                    <i class="fa-brands fa-x-twitter"></i>
+                <a href="https://note.com/tzug_c" target="_blank" rel="noopener noreferrer" class="icon-link" aria-label="note">
+                    <i class="fa-solid fa-n"></i>
                 </a>
-            </div>
-            <!-- Contact removed (moved to Credits page) -->
-            <div class="footer-links">
-                <a href="#" id="backToTop">トップに戻る</a>
+                <a href="https://x.com/tzug_c" target="_blank" rel="noopener noreferrer" class="icon-link" aria-label="X">
+                    <i class="fa-brands fa-twitter"></i>
+                </a>
+                <a href="https://github.com/akino1729/ACT" target="_blank" rel="noopener noreferrer" class="icon-link" aria-label="GitHub">
+                    <i class="fa-brands fa-github"></i>
+                </a>
             </div>
             <div class="copyright">
                 本サイトは Arcaea の非公式ファン企画であり，lowiro limited とは一切関係ありません．<br>
                 Arcaea に関する名称・画像・その他知的財産は各権利者に帰属します．   <br>
                 © 2025 tzug — Licensed under CC BY-NC 4.0<br>
-                
-
             </div>
         </div>
     </footer>

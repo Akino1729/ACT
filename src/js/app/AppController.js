@@ -55,14 +55,37 @@ export class AppController {
                 toggleCommentary(examId);
                 this.rerenderPastExams();
             }
-        });
 
-        document.body.addEventListener('change', (e) => {
-            const examSelect = e.target.closest('[data-action="change-exam"]');
-            if (examSelect) {
-                state.selectedExamId = examSelect.value;
-                state.commentaryOpen.clear();
-                this.rerenderPastExams();
+            // 試験トグル（プレミアムドロップダウン）
+            const examToggle = e.target.closest('[data-action="change-exam"]');
+            if (examToggle) {
+                const newValue = examToggle.getAttribute('data-value');
+                if (state.selectedExamId !== newValue) {
+                    state.selectedExamId = newValue;
+                    state.commentaryOpen.clear();
+                    this.rerenderPastExams();
+                }
+            }
+
+            // ドロップダウンの開閉
+            const dropdownBtn = e.target.closest('[data-action="toggle-dropdown"]');
+            if (dropdownBtn) {
+                const dropdown = dropdownBtn.closest('.premium-dropdown');
+                const isActive = dropdown.classList.toggle('active');
+                dropdownBtn.setAttribute('aria-expanded', String(isActive));
+            } else {
+                // ドロップダウン以外をクリックしたら閉じる
+                document.querySelectorAll('.premium-dropdown.active').forEach(d => {
+                    d.classList.remove('active');
+                    d.querySelector('.dropdown-trigger').setAttribute('aria-expanded', 'false');
+                });
+            }
+
+            // スムーズスクロール (トップに戻る / ロゴ)
+            const topBtn = e.target.closest('#backToTop, .logo');
+            if (topBtn) {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             }
         });
     }

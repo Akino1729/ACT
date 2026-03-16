@@ -18,8 +18,10 @@ export function NewsSection(newsItems = [], maxVisibleItems = 5) {
                 <ul class="news-list">
                     ${newsItems.map((item) => `
                         <li>
-                            <span class="date">${item.date}</span>
-                            <span class="text">${item.text}</span>
+                            <a href="${item.link || '#'}" class="news-link" ${item.link ? 'target="_blank" rel="noopener noreferrer"' : ''}>
+                                <span class="date">${item.date}</span>
+                                <span class="text">${item.text}</span>
+                            </a>
                         </li>
                     `).join('')}
                 </ul>

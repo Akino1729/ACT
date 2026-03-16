@@ -22,10 +22,6 @@ export function PastExamsSection(exams, selectedExamId, commentaryOpen, renderCa
     // 選択された試験、見つからなければ先頭の試験
     const selectedExam = exams.find(e => e.id === selectedExamId) || exams[0];
 
-    const examOptions = exams.map((exam) =>
-        `<option value="${exam.id}" ${exam.id === selectedExam.id ? 'selected' : ''}>${exam.number ? exam.number + ' ' : ''}${exam.title}</option>`
-    ).join('');
-
     const cardsHTML = renderCard(selectedExam, commentaryOpen.has(selectedExam.id));
 
     return `
@@ -35,14 +31,33 @@ export function PastExamsSection(exams, selectedExamId, commentaryOpen, renderCa
                 <span class="decoration-line"></span>
             </div>
             ${exams.length > 1 ? `
-                <div class="year-selector-wrapper">
-                    <label for="exam-select" class="year-selector-label">試験を選択:</label>
-                    <select id="exam-select"
-                            class="year-select"
-                            data-action="change-exam"
-                            aria-label="表示する試験を選択">
-                        ${examOptions}
-                    </select>
+                <div class="exam-selector-container">
+                    <span class="exam-selector-label">試験を選択</span>
+                    <div class="premium-dropdown" id="examDropdown">
+                        <button type="button" 
+                                class="dropdown-trigger" 
+                                data-action="toggle-dropdown" 
+                                aria-haspopup="listbox" 
+                                aria-expanded="false">
+                            <div class="trigger-content">
+                                <span class="trigger-number">${selectedExam.number || ''}</span>
+                                <span class="trigger-title">${selectedExam.title}</span>
+                            </div>
+                            <i class="fa-solid fa-chevron-down chevron"></i>
+                        </button>
+                        <ul class="dropdown-menu" role="listbox">
+                            ${exams.map(exam => `
+                                <li class="dropdown-item ${exam.id === selectedExam.id ? 'selected' : ''}" 
+                                    role="option" 
+                                    data-action="change-exam" 
+                                    data-value="${exam.id}"
+                                    aria-selected="${exam.id === selectedExam.id}">
+                                    <span class="item-number">${exam.number || ''}</span>
+                                    <span class="item-title">${exam.title}</span>
+                                </li>
+                            `).join('')}
+                        </ul>
+                    </div>
                 </div>
             ` : ''}
             <div class="exam-list">

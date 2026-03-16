@@ -101,20 +101,21 @@
 @media (max-width: 768px) {
     .countdown-timer {
         gap: var(--space-sm);
+        flex-wrap: wrap; /* Prevent overflow by wrapping */
     }
     .countdown-unit {
         min-width: 45px;
     }
     .countdown-value {
-        font-size: 1.8rem;
+        font-size: 1.5rem; /* Downscaled to fit e.g. "300" inside the viewport */
         margin-bottom: 3px;
     }
     .countdown-text {
         font-size: 0.65rem;
     }
     .countdown-separator {
-        font-size: 1.2rem;
-        margin-top: 0.2rem;
+        font-size: 1.0rem;
+        margin-top: 0.4rem;
     }
 }
 

@@ -7,24 +7,49 @@
 }
 
 .news-list li {
-    padding: 18px 0;
-    border-bottom: 1px solid rgba(0,0,0,0.05);
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    align-items: flex-start;
-    transition: background 0.3s;
+    border-bottom: 1px solid var(--border-color);
+    transition: var(--transition);
 }
 
-.news-list li:hover {
-    background: rgba(255,255,255,0.4);
+.news-list li:last-child {
+    border-bottom: none;
+}
+
+.news-link {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: var(--space-lg) var(--space-xl);
+    width: 100%;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    gap: var(--space-xl); /* Increased gap between date and text */
+}
+
+.news-link:hover {
+    background: rgba(255, 255, 255, 0.5);
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.02);
+}
+
+[data-theme="dark"] .news-link:hover {
+    background: rgba(255, 255, 255, 0.05);
 }
 
 .news-list .date {
     font-family: var(--font-display);
-    color: #777;
-    font-weight: 600;
-    letter-spacing: 0.05em;
+    color: #888;
+    font-weight: 500;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    min-width: 100px;
+    opacity: 0.8;
+}
+
+.news-list .text {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--text-color);
 }
 
 /* Feature A: スクロール対応 */

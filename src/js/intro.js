@@ -7,6 +7,7 @@ export class ParticleIntro {
     constructor() {
         this.overlay = document.getElementById('introOverlay');
         this.canvas = document.getElementById('introCanvas');
+        this.title = document.querySelector('.intro-title');
         
         if (!this.overlay || !this.canvas) return;
         
@@ -31,6 +32,11 @@ export class ParticleIntro {
         
         this.createParticles();
         this.animate();
+
+        // Show title after a short delay
+        setTimeout(() => {
+            if (this.title) this.title.style.opacity = '1';
+        }, 800);
         
         // Hide overlay after animation - longer display time for premium feel
         setTimeout(() => {

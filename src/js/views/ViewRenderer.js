@@ -27,7 +27,7 @@ export class ViewRenderer {
     }
 
     /**
-     * 静的ページ（注意事項・クレジット等）の HTML を返す．
+     * 静的ページ（出題方針・クレジット等）の HTML を返す．
      * @param {string} pageName
      * @returns {Promise<string>}
      */

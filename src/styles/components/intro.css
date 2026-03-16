@@ -14,6 +14,11 @@
     transition: opacity 1.5s ease-in-out, visibility 1.5s;
 }
 
+.intro-overlay.fade-out {
+    opacity: 0;
+    visibility: hidden;
+}
+
 .intro-canvas {
     position: absolute;
     top: 50%;
@@ -25,10 +30,11 @@
 .intro-title {
     position: absolute;
     font-family: var(--font-display);
-    font-size: 3rem;
+    font-size: clamp(2.5rem, 5vw, 3rem); /* Added clamp for responsiveness */
     letter-spacing: 0.2em;
+    font-weight: 400; /* Explicitly set to match hero and ensure Cormorant loads */
     color: var(--text-color);
     opacity: 0;
     transition: opacity 2s ease-in-out;
-    text-shadow: 0 0 20px rgba(255,255,255,0.8);
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.4); /* Matched shadow with hero */
 }

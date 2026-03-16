@@ -5,7 +5,7 @@
     position: fixed;
     top: 0;
     width: 100%;
-    background: var(--glass-bg);
+    background: var(--bg-color); /* Matches cream background */
     border-bottom: 1px solid var(--border-color);
     backdrop-filter: blur(10px);
     z-index: 1000;
@@ -26,6 +26,24 @@
     font-size: 1.2rem;
     font-weight: 600;
     letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    user-select: none;
+    display: inline-block;
+}
+
+.logo:hover {
+    transform: scale(1.05) translateY(-2px);
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.logo:active {
+    transform: scale(0.95) translateY(0);
+    transition-duration: 0.1s;
+}
+
+[data-theme="dark"] .logo:hover {
+    text-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
 }
 
 .nav-links {
@@ -207,11 +225,50 @@ section {
     margin: 50px 0;
 }
 
+/* Back to Top Button */
+.back-to-top-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 60px 0 20px 0;
+    padding: 0 20px;
+}
+
+.back-to-top-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 24px;
+    background: transparent;
+    border: none;
+    color: var(--text-color);
+    font-family: var(--font-display);
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    user-select: none;
+}
+
+.back-to-top-btn:hover {
+    transform: scale(1.1) translateY(-3px);
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    background: transparent;
+    color: var(--text-color);
+}
+
+.back-to-top-btn:active {
+    transform: scale(0.9) translateY(0);
+    transition-duration: 0.1s;
+}
+
+[data-theme="dark"] .back-to-top-btn:hover {
+    text-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+}
+
 /* Footer */
 footer {
     border-top: 1px solid var(--border-color);
     padding: var(--space-2xl) 0;
-    margin-top: 80px;
     text-align: center;
 }
 
@@ -222,13 +279,17 @@ footer {
 }
 
 .footer-icons {
-    margin-bottom: var(--space-lg);
+    margin-bottom: var(--space-xl);
+    display: flex;
+    justify-content: center;
+    gap: var(--space-2xl); /* Increased gap */
 }
 
 .icon-link {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     color: #888;
-    transition: color 0.3s ease;
+    padding: 10px;
+    transition: all 0.3s ease;
 }
 
 .icon-link:hover {
